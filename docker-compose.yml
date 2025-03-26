@@ -56,7 +56,7 @@
 #   notes-app-nw:
 
 
-version: "3.3"
+version: "3.4"
 services:
   web:
      image: "kvedansh786/notes-app:latest"
