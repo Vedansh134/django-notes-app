@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: notes-app-deployment
+  namespace: notes-app
+  labels:
+    app: notes-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notes-app
+  template:
+    metadata:
+      labels:
+        app: notes-app
+    spec:
+      containers:
+      - name: notes-app
+        image: kvedansh786/notes-app-k8s:latest
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: notes-app-storage
+          mountPath: /app/backend/media
+      volumes:
+      - name: notes-app-storage
+        persistentVolumeClaim:
+          claimName: notes-app-pvc
